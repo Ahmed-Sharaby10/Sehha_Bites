@@ -8,4 +8,4 @@ openai
 keras
 tensorflow
 python-dotenv
-sklearn
+scikit-learn
