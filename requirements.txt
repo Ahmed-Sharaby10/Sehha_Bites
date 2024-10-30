@@ -1,0 +1,8 @@
+pandas
+streamlit
+numpy
+joblib
+openai
+requests
+streamlit-chat
+python-dotenv
