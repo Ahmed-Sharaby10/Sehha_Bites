@@ -3,6 +3,7 @@ streamlit
 numpy
 joblib
 openai
+keras
 requests
 streamlit-chat
 python-dotenv
