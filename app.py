@@ -32,7 +32,8 @@ def load_data():
     # Concatenate all DataFrames into one
     df = pd.concat([df1, df2, df3, df4, df5], ignore_index=True)
     return df
-    
+df = load_data()
+
 @st.cache_data
 def load_recommendations():
     return joblib.load("pkl/recommendations_compressed.pkl")
@@ -197,7 +198,6 @@ elif page == "Disease Page":
     st.image("Images/doctor.png", width=300)
 
 
-    df = load_data()
 
     health_conditions = st.multiselect(
         "Select health conditions:",
