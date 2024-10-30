@@ -11,8 +11,8 @@ import os
 ## Load environment variables
 load_dotenv()
 
-AZURE_OPENAI_ENDPOINT = os.getenv("MY_ENDPOINT_KEY")
-API_KEY = os.getenv("MY_API_KEY")
+AZURE_OPENAI_ENDPOINT=os.getenv("MY_ENDPOINT_KEY")    
+API_KEY=os.getenv("MY_API_KEY")
 
 # Load the trained model and scaler
 # Ensure that `model.pkl` and `scaler.pkl` exist in the `pkl` directory within your main directory
