@@ -1,9 +1,10 @@
 pandas
-streamlit
 numpy
+streamlit
+streamlit-chat
+requests
 joblib
 openai
 keras
-requests
-streamlit-chat
+tensorflow
 python-dotenv
