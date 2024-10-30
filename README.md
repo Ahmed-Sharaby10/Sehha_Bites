@@ -1,12 +1,13 @@
 # Sehha_bites
-Diet Recommendation System and your health assistant
-## Personalized Food Recommendation System with Health Integration
+### Diet Recommendation System and your health assistant
+### Personalized Food Recommendation System with Health Integration
 
 ## Presentation
 
 https://sehhabites.my.canva.site/
 
-![Screenshot_28-10-2024_11053_sehhabites my canva site](https://github.com/user-attachments/assets/6ed36907-24ae-43dc-919b-98b00edaed16)
+![Screenshot_28-10-2024_11053_sehhabites my canva site](https://github.com/user-attachments/assets/dd6fa854-43eb-42ce-bc42-0d6cbd426ebd)
+
 
 ## Project Overview
 
