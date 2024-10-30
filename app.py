@@ -24,11 +24,11 @@ Scaler = joblib.load("pkl/scaler.pkl")  # Ensure this file exists in your direct
 @st.cache_data
 def load_data():
     # Load individual DataFrames
-    df1 = pd.read_csv('datasets/output_dataset_1.csv')
-    df2 = pd.read_csv('datasets/output_dataset_2.csv')
-    df3 = pd.read_csv('datasets/output_dataset_3.csv')
-    df4 = pd.read_csv('datasets/output_dataset_4.csv')
-    df5 = pd.read_csv('datasets/output_dataset_5.csv')
+    df1 = pd.read_csv('datasets/df1.csv')
+    df2 = pd.read_csv('datasets/df2.csv')
+    df3 = pd.read_csv('datasets/df3.csv')
+    df4 = pd.read_csv('datasets/df4.csv')
+    df5 = pd.read_csv('datasets/df5.csv')
     
     # Concatenate all DataFrames into one
     df = pd.concat([df1, df2, df3, df4, df5], ignore_index=True)
