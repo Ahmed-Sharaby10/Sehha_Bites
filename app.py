@@ -11,9 +11,8 @@ import os
 
 load_dotenv()
 
-AZURE_OPENAI_ENDPOINT=os.getenv("MY_ENDPOINT_KEY")    
-API_KEY=os.getenv("MY_API_KEY")
-
+AZURE_OPENAI_ENDPOINT=os.getenv("AZURE_OPENAI_ENDPOINT_key")    
+API_KEY=os.getenv("API_KEY_key")
 
 
 
