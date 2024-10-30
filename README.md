@@ -8,6 +8,10 @@ https://sehhabites.my.canva.site/
 
 ![Screenshot_28-10-2024_11053_sehhabites my canva site](https://github.com/user-attachments/assets/dd6fa854-43eb-42ce-bc42-0d6cbd426ebd)
 
+## Try our model
+
+https://sehha-bites.streamlit.app/
+if any error happend refresh the site
 
 ## Project Overview
 
