@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 import os
 
 ## Load environment variables
-#load_dotenv()
+load_dotenv()
 
 AZURE_OPENAI_ENDPOINT = os.getenv("MY_ENDPOINT_KEY")
 API_KEY = os.getenv("MY_API_KEY")
