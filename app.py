@@ -11,9 +11,8 @@ import os
 
 load_dotenv()
 
-AZURE_OPENAI_ENDPOINT=os.getenv("AZURE_OPENAI_ENDPOINT_key")    
-API_KEY=os.getenv("API_KEY_key")
-
+AZURE_OPENAI_ENDPOINT=st.secrets["AZURE_OPENAI_ENDPOINT"]   
+API_KEY= st.secrets["MY_API_KEY"]
 
 
 # Load the trained model and scaler
