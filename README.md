@@ -16,7 +16,7 @@ if any error happend refresh the site
 
 ## Project Overview
 
-Sehha Bites is a personalized food recommendation system that provides users with meal suggestions tailored to both their dietary preferences and specific health needs. Utilizing a rich dataset from TAGL, our model takes into account unique user profiles, including chronic health conditions and allergen sensitivities, to make safe and enjoyable food recommendations.
+Sehha Bites is a personalized food recommendation system that provides users with meal suggestions tailored to both their dietary preferences and specific health needs. Utilizing a rich dataset from KAGGLE, our model takes into account unique user profiles, including chronic health conditions and allergen sensitivities, to make safe and enjoyable food recommendations.
 
 ## Key Features
 
