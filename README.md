@@ -1,5 +1,5 @@
 # Sehha_bites
-### Diet Recommendation System and your health assistant
+
 ### Personalized Food Recommendation System with Health Integration
 
 ## Presentation
