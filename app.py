@@ -132,7 +132,7 @@ def get_response_from_openai(prompt):
     }
     data = {
         'messages': [
-            {"role": "system", "content": "Act as a senior Nutritionist and you suggest diet system and take in your mind its medical effect.Your role is to provide personalized food recommendations, suggest healthy diets, and address disease-specific food queries. You should also help users manage allergies and give recommendations based on their health conditions.ask for information if needed before answering"},
+            {"role": "system", "content": "Act as a senior Nutritionist and you suggest diet system and take in your mind its medical effect.Your role is to provide personalized food recommendations, suggest healthy diets, and address disease-specific food queries. You should also help users manage allergies and give recommendations based on their health conditions.Feel free to request any additional information if needed."},
             {"role": 'user', 'content': prompt}
         ],
         'max_tokens': 200,
@@ -146,7 +146,7 @@ def get_response_from_openai(prompt):
     else:
         return 'Error: unable to connect to Azure service for chatting.'
    
-def delayed_slider(label, min_val, max_val, value, key, delay=1):
+def delayed_slider(label, min_val, max_val, value, key, delay=5):
     # Display the slider and update session state
     slider_val = st.slider(label, min_val, max_val, value, key=key)
     
@@ -177,7 +177,7 @@ elif page == "Diet Page":
     gender = st.radio("Gender", ["Male", "Female"], key="gender_input").lower()
     weight = st.number_input("Weight (kg)", min_value=1.0, key="weight_input")
     height = st.number_input("Height (cm)", min_value=1.0, key="height_input")
-    age = delayed_slider("Age", 1, 80, value=25, key="age_input")
+    age = st.number_input("Age", min_value=1 , key="age_input")
     
     # Normalizing intensity to match the dictionary keys
     intensity = st.selectbox("Activity Level", ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extra Active"], key="intensity_input").lower().replace(' ', '_')
