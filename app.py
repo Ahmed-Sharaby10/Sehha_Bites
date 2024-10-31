@@ -8,6 +8,7 @@ import joblib
 from streamlit_chat import message  # For chatbot UI
 from dotenv import load_dotenv
 import os
+import time
 
 load_dotenv()
 
@@ -131,10 +132,10 @@ def get_response_from_openai(prompt):
     }
     data = {
         'messages': [
-            {"role": 'system', 'content': 'You are a diet assistant. Your role is to provide personalized food recommendations, suggest healthy diets, and address disease-specific food queries. You should also help users manage allergies and give recommendations based on their health conditions.'},
+            {"role": "system", "content": "Act as a senior Nutritionist and you suggest diet system and take in your mind its medical effect.Your role is to provide personalized food recommendations, suggest healthy diets, and address disease-specific food queries. You should also help users manage allergies and give recommendations based on their health conditions.ask for information if needed before answering"},
             {"role": 'user', 'content': prompt}
         ],
-        'max_tokens': 150,
+        'max_tokens': 200,
         'temperature': 0.7
     }
 
@@ -145,6 +146,19 @@ def get_response_from_openai(prompt):
     else:
         return 'Error: unable to connect to Azure service for chatting.'
    
+def delayed_slider(label, min_val, max_val, value, key, delay=1):
+    # Display the slider and update session state
+    slider_val = st.slider(label, min_val, max_val, value, key=key)
+    
+    # Wait for the specified delay if the slider value has changed
+    if st.session_state.get(f"{key}_prev") != slider_val:
+        time.sleep(delay)
+    
+    # Update the previous value in session state
+    st.session_state[f"{key}_prev"] = slider_val
+    
+    return slider_val
+
 # Streamlit UI Code
 st.title("Diet Recommender Web App")
 st.image("Images/logo.png",width=300)
@@ -163,7 +177,7 @@ elif page == "Diet Page":
     gender = st.radio("Gender", ["Male", "Female"], key="gender_input").lower()
     weight = st.number_input("Weight (kg)", min_value=1.0, key="weight_input")
     height = st.number_input("Height (cm)", min_value=1.0, key="height_input")
-    age = st.slider("Age", 1, 100, key="age_input")
+    age = delayed_slider("Age", 1, 80, value=25, key="age_input")
     
     # Normalizing intensity to match the dictionary keys
     intensity = st.selectbox("Activity Level", ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extra Active"], key="intensity_input").lower().replace(' ', '_')
@@ -205,7 +219,7 @@ elif page == "Disease Page":
         key="health_conditions_input"
     )
 
-    calorie_range = st.slider("Calorie Range", 0, 1500, (200, 800), key="calories_input")
+    calorie_range = delayed_slider("Calorie Range", 0, 1500, (200, 800), key="calories_input")
 
     allergies = st.text_input("Enter allergies (e.g., nuts, milk):", key="allergies_input")
 
@@ -235,30 +249,41 @@ elif page == "Disease Page":
 
 # Chatbot Page
 elif page == "Chatbot":
-    st.header("Chat with DietBot")
+
+    st.title("Chat with DietBot")
     st.image("Images/file.png",width=300)
 
+    # Initialize the chat history
     if "messages" not in st.session_state:
-        st.session_state["messages"] = []
+        st.session_state.messages = []
 
-    if st.session_state['messages']:
-        st.subheader('Chat History')
-        for msg in st.session_state['messages']:
-            if msg['role'] == 'user':
-                st.write(f"*You*: {msg['content']}")
-            else:
-                st.write(f"*DietBot*: {msg['content']}")
+    # Display chat history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-    user_input = st.text_input('Enter your question (e.g., "What foods are good for heart disease?" or "Suggest a low-calorie meal"): ')
+    # Capture user input through Streamlit's chat input
+    if user_input := st.chat_input("Enter your question (e.g., 'What foods are good for heart disease?' or 'Suggest a low-calorie meal')"):
 
-    if st.button('Send'):
-        if user_input:
-            st.session_state['messages'].append({'role': 'user', 'content': user_input})
+        # Display user's message and append to session state
+        with st.chat_message("user"):
+            st.markdown(user_input)
+        st.session_state.messages.append({"role": "user", "content": user_input})
 
-            bot_response = get_response_from_openai(user_input)
-            st.session_state['messages'].append({'role': 'assistant', 'content': bot_response})
+        # Simulate streaming by displaying response chunks
+        with st.chat_message("assistant"):
+            bot_placeholder = st.empty()
+            bot_placeholder.markdown("_DietBot is thinking..._")
 
-            st.write(f"*DietBot*: {bot_response}")
+            # Get full response from Azure OpenAI
+            full_response = get_response_from_openai(user_input)
 
-        else:
-            st.warning("Please enter a message.")
+            # Simulate streaming by revealing text in chunks
+            displayed_response = ""
+            for word in full_response.split():
+                displayed_response += word + " "
+                bot_placeholder.markdown(displayed_response)
+                time.sleep(0.05)  # Adjust delay for preferred speed
+
+        # Append the bot's final response to session state
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
