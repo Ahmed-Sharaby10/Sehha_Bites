@@ -82,10 +82,7 @@ The system provides meal recommendations based on user input, including:
 - We welcome contributions! Please fork the repository and submit a pull request for review.
 
 ## Contributors
-- Ahmed El Hadidy  Project Developer
-- Ahmed Sharaby  Project Developer
-- Yousef Badr MlFlow Intergration
-- Mahmoud Alghnam Presentation Supporter
-
+- Ahmed El Hadidy
+- Ahmed Sharaby
 
 See the LICENSE file for more details.
